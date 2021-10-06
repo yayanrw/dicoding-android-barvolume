@@ -5,4 +5,5 @@
     <string name="tinggi">Tinggi</string>
     <string name="hitung">Hitung</string>
     <string name="hasil">Hasil</string>
+    <string name="required">Field ini tidak boleh kosong</string>
 </resources>

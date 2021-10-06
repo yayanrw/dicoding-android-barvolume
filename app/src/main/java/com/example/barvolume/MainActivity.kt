@@ -37,13 +37,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if (v.id == R.id.btn_calculate) {
-            val inputLength = edtLength.text.toString().trim()
-            val inputWidth = edtWidth.text.toString().trim()
-            val inputHeight = edtHeight.text.toString().trim()
-            val volume = inputLength.toDouble() * inputWidth.toDouble() * inputHeight.toDouble()
-            tvResult.text = volume.toString()
+        if(!isEmptyFields()) {
+            if (v.id == R.id.btn_calculate) {
+                val inputLength = edtLength.text.toString().trim()
+                val inputWidth = edtWidth.text.toString().trim()
+                val inputHeight = edtHeight.text.toString().trim()
+                val volume = inputLength.toDouble() * inputWidth.toDouble() * inputHeight.toDouble()
+                tvResult.text = volume.toString()
+            }
         }
+    }
+
+    private fun isEmptyFields(): Boolean {
+        var isEmptyFields = false
+        val inputLength = edtLength.text.toString().trim()
+        val inputWidth = edtWidth.text.toString().trim()
+        val inputHeight = edtHeight.text.toString().trim()
+
+        if (inputLength.isEmpty()) {
+            isEmptyFields = true
+            edtLength.error = getString(R.string.required)
+        }
+        if (inputWidth.isEmpty()) {
+            isEmptyFields = true
+            edtWidth.error = getString(R.string.required)
+        }
+        if (inputHeight.isEmpty()) {
+            isEmptyFields = true
+            edtHeight.error = getString(R.string.required)
+        }
+        return isEmptyFields
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
